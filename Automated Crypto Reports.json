@@ -1,0 +1,996 @@
+{
+  "name": "Automated Crypto Reports",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        -128
+      ],
+      "id": "3587886e-14c1-419c-83f0-f1a25d6b6a44",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=try&ids=bonk&order=market_cap_desc&per_page=1&page=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -784,
+        -480
+      ],
+      "id": "6c280297-189c-4fa4-84d5-0931f6285b00",
+      "name": "Extract Crypto Data 1"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=try&ids=bonk&order=market_cap_desc&per_page=1&page=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -816,
+        -240
+      ],
+      "id": "9ddd7d1e-2a48-4ac2-9d1a-9204fa5bb867",
+      "name": "Extract Crypto Data 2"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=try&ids=bonk&order=market_cap_desc&per_page=1&page=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -880,
+        -48
+      ],
+      "id": "fb0ee28d-3954-4977-9bf0-cdb29918e0c4",
+      "name": "Extract Crypto Data 3"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=try&ids=bonk&order=market_cap_desc&per_page=1&page=1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -864,
+        208
+      ],
+      "id": "d2b4b3e2-92dd-4a17-9b0f-d6a047f499d3",
+      "name": "Extract Crypto Data 4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const coin = items[0].json;\n\nfunction clean(value, decimals = null) {\n  if (value === undefined || value === null) {\n    return \"Belirlenemedi\";\n  }\n  if (typeof value === \"number\" && decimals !== null) {\n    return value.toFixed(decimals);\n  }\n  return value;\n}\n\nreturn [\n  {\n    json: {\n      name: clean(coin.name),\n      symbol: clean(coin.symbol.toUpperCase()),\n      current_price: clean(coin.current_price, 8) + \" TL\",\n      high_24h: clean(coin.high_24h),\n      low_24h: clean(coin.low_24h),\n      price_change_percentage_24h: clean(coin.price_change_percentage_24h, 2) + \" %\",\n      total_volume: clean(coin.total_volume, 2) + \" TL\",\n      ath: clean(coin.ath, 8),\n      ath_change_percentage: clean(coin.ath_change_percentage, 2),\n      atl: clean(coin.atl, 8),\n      atl_change_percentage: clean(coin.atl_change_percentage, 2),\n      circulating_supply: clean(coin.circulating_supply),\n      total_supply: clean(coin.total_supply),\n      max_supply: clean(coin.max_supply)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -528,
+        -496
+      ],
+      "id": "97a8a3a2-ca9d-4ea3-825a-ab2de369edd7",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const coin = items[0].json;\n\nfunction clean(value, decimals = null) {\n  if (value === undefined || value === null) {\n    return \"Belirlenemedi\";\n  }\n  if (typeof value === \"number\" && decimals !== null) {\n    return value.toFixed(decimals);\n  }\n  return value;\n}\n\nreturn [\n  {\n    json: {\n      name: clean(coin.name),\n      symbol: clean(coin.symbol.toUpperCase()),\n      current_price: clean(coin.current_price, 8) + \" TL\",\n      high_24h: clean(coin.high_24h),\n      low_24h: clean(coin.low_24h),\n      price_change_percentage_24h: clean(coin.price_change_percentage_24h, 2) + \" %\",\n      total_volume: clean(coin.total_volume, 2) + \" TL\",\n      ath: clean(coin.ath, 8),\n      ath_change_percentage: clean(coin.ath_change_percentage, 2),\n      atl: clean(coin.atl, 8),\n      atl_change_percentage: clean(coin.atl_change_percentage, 2),\n      circulating_supply: clean(coin.circulating_supply),\n      total_supply: clean(coin.total_supply),\n      max_supply: clean(coin.max_supply)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        -240
+      ],
+      "id": "6f8a33d8-6845-4e60-97c3-0371a0e240bb",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const coin = items[0].json;\n\nfunction clean(value, decimals = null) {\n  if (value === undefined || value === null) {\n    return \"Belirlenemedi\";\n  }\n  if (typeof value === \"number\" && decimals !== null) {\n    return value.toFixed(decimals);\n  }\n  return value;\n}\n\nreturn [\n  {\n    json: {\n      name: clean(coin.name),\n      symbol: clean(coin.symbol.toUpperCase()),\n      current_price: clean(coin.current_price, 8) + \" TL\",\n      high_24h: clean(coin.high_24h),\n      low_24h: clean(coin.low_24h),\n      price_change_percentage_24h: clean(coin.price_change_percentage_24h, 2) + \" %\",\n      total_volume: clean(coin.total_volume, 2) + \" TL\",\n      ath: clean(coin.ath, 8),\n      ath_change_percentage: clean(coin.ath_change_percentage, 2),\n      atl: clean(coin.atl, 8),\n      atl_change_percentage: clean(coin.atl_change_percentage, 2),\n      circulating_supply: clean(coin.circulating_supply),\n      total_supply: clean(coin.total_supply),\n      max_supply: clean(coin.max_supply)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        -16
+      ],
+      "id": "f35e07a7-15e4-4c5c-b4b4-8c33b0b18f16",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const coin = items[0].json;\n\nfunction clean(value, decimals = null) {\n  if (value === undefined || value === null) {\n    return \"Belirlenemedi\";\n  }\n  if (typeof value === \"number\" && decimals !== null) {\n    return value.toFixed(decimals);\n  }\n  return value;\n}\n\nreturn [\n  {\n    json: {\n      name: clean(coin.name),\n      symbol: clean(coin.symbol.toUpperCase()),\n      current_price: clean(coin.current_price, 8) + \" TL\",\n      high_24h: clean(coin.high_24h),\n      low_24h: clean(coin.low_24h),\n      price_change_percentage_24h: clean(coin.price_change_percentage_24h, 2) + \" %\",\n      total_volume: clean(coin.total_volume, 2) + \" TL\",\n      ath: clean(coin.ath, 8),\n      ath_change_percentage: clean(coin.ath_change_percentage, 2),\n      atl: clean(coin.atl, 8),\n      atl_change_percentage: clean(coin.atl_change_percentage, 2),\n      circulating_supply: clean(coin.circulating_supply),\n      total_supply: clean(coin.total_supply),\n      max_supply: clean(coin.max_supply)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        240
+      ],
+      "id": "f102aa7c-ccb9-4d7a-9a42-c3256fe87240",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a788c8e-013a-460f-a1d5-6d64dc543a2c",
+              "name": "chatInput",
+              "value": "=Hello, below are some basic market data for Bonk Coin. Please write a short and professional analysis based on these data.  Date: {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }}  Coin: {{ $json.name }} ({{ $json.symbol }})  Price: {{ $json.current_price }} 24h High: {{ $json.high_24h }} 24h Low: {{ $json.low_24h }} 24h Change: {{ $json.price_change_percentage_24h }} Volume: {{ $json.total_volume }}  ATH: {{ $json.ath }} ATH Change: {{ $json.ath_change_percentage }}%  ATL: {{ $json.atl }} ATL Change: {{ $json.atl_change_percentage }}%  Supply (circulating / total / max): {{ $json.circulating_supply }} / {{ $json.total_supply }} / {{ $json.max_supply }}  Please analyze with short and clear sentences under the following headings:  - Price status and volatility - Liquidity and volume commentary - General investor interest - Risk/opportunity - General judgment (Positive / Negative / Neutral)  Last sentence: one-sentence recommendation for investors (can use appropriate emojis without exaggeration).  Intro example: Hello, the {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }} analysis for {{ $json.name }} is as follows.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        -480
+      ],
+      "id": "79fc7d70-fa2d-445e-920d-c1a6b9c5a320",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a788c8e-013a-460f-a1d5-6d64dc543a2c",
+              "name": "chatInput",
+              "value": "=Hello, below are some basic market data for Bonk Coin. Please write a short and professional analysis based on these data.  Date: {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }}  Coin: {{ $json.name }} ({{ $json.symbol }})  Price: {{ $json.current_price }} 24h High: {{ $json.high_24h }} 24h Low: {{ $json.low_24h }} 24h Change: {{ $json.price_change_percentage_24h }} Volume: {{ $json.total_volume }}  ATH: {{ $json.ath }} ATH Change: {{ $json.ath_change_percentage }}%  ATL: {{ $json.atl }} ATL Change: {{ $json.atl_change_percentage }}%  Supply (circulating / total / max): {{ $json.circulating_supply }} / {{ $json.total_supply }} / {{ $json.max_supply }}  Please analyze with short and clear sentences under the following headings:  - Price status and volatility - Liquidity and volume commentary - General investor interest - Risk/opportunity - General judgment (Positive / Negative / Neutral)  Last sentence: one-sentence recommendation for investors (can use appropriate emojis without exaggeration).  Intro example: Hello, the {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }} analysis for {{ $json.name }} is as follows.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        -240
+      ],
+      "id": "ed2c965d-c592-480b-ab3e-3875985373f6",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a788c8e-013a-460f-a1d5-6d64dc543a2c",
+              "name": "chatInput",
+              "value": "=Hello, below are some basic market data for Bonk Coin. Please write a short and professional analysis based on these data.  Date: {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }}  Coin: {{ $json.name }} ({{ $json.symbol }})  Price: {{ $json.current_price }} 24h High: {{ $json.high_24h }} 24h Low: {{ $json.low_24h }} 24h Change: {{ $json.price_change_percentage_24h }} Volume: {{ $json.total_volume }}  ATH: {{ $json.ath }} ATH Change: {{ $json.ath_change_percentage }}%  ATL: {{ $json.atl }} ATL Change: {{ $json.atl_change_percentage }}%  Supply (circulating / total / max): {{ $json.circulating_supply }} / {{ $json.total_supply }} / {{ $json.max_supply }}  Please analyze with short and clear sentences under the following headings:  - Price status and volatility - Liquidity and volume commentary - General investor interest - Risk/opportunity - General judgment (Positive / Negative / Neutral)  Last sentence: one-sentence recommendation for investors (can use appropriate emojis without exaggeration).  Intro example: Hello, the {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }} analysis for {{ $json.name }} is as follows.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        -16
+      ],
+      "id": "103c6920-96be-4a17-b85b-d6d5f26ef105",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a788c8e-013a-460f-a1d5-6d64dc543a2c",
+              "name": "chatInput",
+              "value": "=Hello, below are some basic market data for Bonk Coin. Please write a short and professional analysis based on these data.  Date: {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }}  Coin: {{ $json.name }} ({{ $json.symbol }})  Price: {{ $json.current_price }} 24h High: {{ $json.high_24h }} 24h Low: {{ $json.low_24h }} 24h Change: {{ $json.price_change_percentage_24h }} Volume: {{ $json.total_volume }}  ATH: {{ $json.ath }} ATH Change: {{ $json.ath_change_percentage }}%  ATL: {{ $json.atl }} ATL Change: {{ $json.atl_change_percentage }}%  Supply (circulating / total / max): {{ $json.circulating_supply }} / {{ $json.total_supply }} / {{ $json.max_supply }}  Please analyze with short and clear sentences under the following headings:  - Price status and volatility - Liquidity and volume commentary - General investor interest - Risk/opportunity - General judgment (Positive / Negative / Neutral)  Last sentence: one-sentence recommendation for investors (can use appropriate emojis without exaggeration).  Intro example: Hello, the {{ new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false }).replace(\",\", \"\") }} analysis for {{ $json.name }} is as follows.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        240
+      ],
+      "id": "f84b198d-e32f-465c-86f4-f20637dccd3c",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -32,
+        -496
+      ],
+      "id": "25359e2e-17cf-49f0-9459-a2cd44cd4db7",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        48,
+        -368
+      ],
+      "id": "7de7a045-62da-47bd-86d1-b379beabef51",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2R8BxHVSZphLEEuc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -64,
+        -256
+      ],
+      "id": "04fd4480-1fba-487a-98b4-5746af9a258e",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -144
+      ],
+      "id": "baee4c20-137c-4fe6-807b-5134a2f9808f",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2R8BxHVSZphLEEuc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -128,
+        -16
+      ],
+      "id": "3af56ee5-6477-43a1-8f89-0dcbf2786dc5",
+      "name": "Basic LLM Chain2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        112
+      ],
+      "id": "02aaee09-1bb9-42d9-aad9-dc6941a4f14f",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2R8BxHVSZphLEEuc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -96,
+        256
+      ],
+      "id": "9ad13324-37bb-462e-a12a-d08d7833a8d5",
+      "name": "Basic LLM Chain3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        0,
+        384
+      ],
+      "id": "f66a35e6-6c15-4282-a364-e783e063b9cb",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2R8BxHVSZphLEEuc",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "mdtareqshahalam@gmail.com",
+        "subject": "Crypto Report",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        768,
+        -496
+      ],
+      "id": "758e8357-84f2-4845-abb5-68c2f57ddf81",
+      "name": "Send a message",
+      "webhookId": "382421d0-ad5d-465a-8684-8af7386823b1",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "nI7wHrmHC61FmGxv",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// This will loop through each incoming item\nreturn items.map(item => {\n  const newItem = { ...item };\n\n  // Check each key in the JSON\n  for (const key in newItem.json) {\n    if (typeof newItem.json[key] === \"string\") {\n      // Remove all asterisks\n      newItem.json[key] = newItem.json[key].replace(/\\*/g, '');\n    }\n  }\n\n  return newItem;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        -496
+      ],
+      "id": "eb37a3b7-949d-442f-a9f0-f8449dd16e22",
+      "name": "code4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json;\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Crypto Market Report</title>\n  <style>\n    body {\n      font-family: Arial, Helvetica, sans-serif;\n      background: #f4f7fb;\n      padding: 20px;\n      color: #1f2937;\n    }\n    .container {\n      max-width: 800px;\n      margin: auto;\n      background: #ffffff;\n      border-radius: 12px;\n      overflow: hidden;\n      box-shadow: 0 10px 25px rgba(0,0,0,0.08);\n    }\n    .header {\n      background: linear-gradient(135deg, #4f46e5, #06b6d4);\n      color: #ffffff;\n      padding: 24px;\n      text-align: center;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .section {\n      padding: 20px 24px;\n      border-bottom: 1px solid #e5e7eb;\n    }\n    .section:last-child {\n      border-bottom: none;\n    }\n    .section h2 {\n      margin-bottom: 12px;\n      color: #4f46e5;\n      font-size: 20px;\n    }\n    .card {\n      display: flex;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: #f9fafb;\n      border-radius: 8px;\n      margin-bottom: 10px;\n    }\n    .label {\n      font-weight: 600;\n      color: #374151;\n    }\n    .value {\n      font-weight: 700;\n      color: #111827;\n    }\n    .positive {\n      color: #16a34a;\n    }\n    .negative {\n      color: #dc2626;\n    }\n    .footer {\n      background: #f3f4f6;\n      padding: 16px;\n      text-align: center;\n      font-size: 13px;\n      color: #6b7280;\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <h1>${data.name} (${data.symbol}) Market Report</h1>\n      <p>${new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false })}</p>\n    </div>\n\n    <div class=\"section\">\n      <h2>📈 Price Overview</h2>\n      <div class=\"card\"><span class=\"label\">Current Price</span><span class=\"value\">${data.current_price}</span></div>\n      <div class=\"card\"><span class=\"label\">24h High</span><span class=\"value\">${data.high_24h}</span></div>\n      <div class=\"card\"><span class=\"label\">24h Low</span><span class=\"value\">${data.low_24h}</span></div>\n      <div class=\"card\">\n        <span class=\"label\">24h Change</span>\n        <span class=\"value ${parseFloat(data.price_change_percentage_24h) >= 0 ? 'positive' : 'negative'}\">\n          ${data.price_change_percentage_24h}\n        </span>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <h2>💧 Liquidity & Volume</h2>\n      <div class=\"card\"><span class=\"label\">Total Volume</span><span class=\"value\">${data.total_volume}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>🏆 All-Time Levels</h2>\n      <div class=\"card\"><span class=\"label\">ATH</span><span class=\"value\">${data.ath}</span></div>\n      <div class=\"card\"><span class=\"label\">ATL</span><span class=\"value\">${data.atl}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>📊 Supply Information</h2>\n      <div class=\"card\"><span class=\"label\">Circulating Supply</span><span class=\"value\">${data.circulating_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Total Supply</span><span class=\"value\">${data.total_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Max Supply</span><span class=\"value\">${data.max_supply}</span></div>\n    </div>\n\n    <div class=\"footer\">\n      Automated report generated via n8n • For informational purposes only\n    </div>\n\n  </div>\n</body>\n</html>\n`;\n\nreturn [\n  {\n    json: {\n      html_report: html\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        -384
+      ],
+      "id": "0eaa5fb6-2373-4b86-8922-5f4f58117ff2",
+      "name": "code 5"
+    },
+    {
+      "parameters": {
+        "sendTo": "mdtareqshahalal@gmail.com",
+        "subject": "Crypto Report",
+        "message": "={{ $json.html_report }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        -336
+      ],
+      "id": "1cfbe92a-eb95-413b-9e50-ce6de90ebc55",
+      "name": "Send a message1",
+      "webhookId": "69931f88-9eb6-46f1-aceb-1a6bb5fad99a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gauD2GdKZdlqTsjG",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "mdtareqshahalam@gmail.com",
+        "subject": "Crypto Report",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        832,
+        -160
+      ],
+      "id": "cfb82777-d9e2-41fb-b9a9-9945f9c3fc5f",
+      "name": "Send a message2",
+      "webhookId": "382421d0-ad5d-465a-8684-8af7386823b1",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "nI7wHrmHC61FmGxv",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// This will loop through each incoming item\nreturn items.map(item => {\n  const newItem = { ...item };\n\n  // Check each key in the JSON\n  for (const key in newItem.json) {\n    if (typeof newItem.json[key] === \"string\") {\n      // Remove all asterisks\n      newItem.json[key] = newItem.json[key].replace(/\\*/g, '');\n    }\n  }\n\n  return newItem;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -224
+      ],
+      "id": "ea60b6e6-ca81-4ba3-aa75-7eb8cccb7cd4",
+      "name": "code"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json;\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Crypto Market Report</title>\n  <style>\n    body {\n      font-family: Arial, Helvetica, sans-serif;\n      background: #f4f7fb;\n      padding: 20px;\n      color: #1f2937;\n    }\n    .container {\n      max-width: 800px;\n      margin: auto;\n      background: #ffffff;\n      border-radius: 12px;\n      overflow: hidden;\n      box-shadow: 0 10px 25px rgba(0,0,0,0.08);\n    }\n    .header {\n      background: linear-gradient(135deg, #4f46e5, #06b6d4);\n      color: #ffffff;\n      padding: 24px;\n      text-align: center;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .section {\n      padding: 20px 24px;\n      border-bottom: 1px solid #e5e7eb;\n    }\n    .section:last-child {\n      border-bottom: none;\n    }\n    .section h2 {\n      margin-bottom: 12px;\n      color: #4f46e5;\n      font-size: 20px;\n    }\n    .card {\n      display: flex;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: #f9fafb;\n      border-radius: 8px;\n      margin-bottom: 10px;\n    }\n    .label {\n      font-weight: 600;\n      color: #374151;\n    }\n    .value {\n      font-weight: 700;\n      color: #111827;\n    }\n    .positive {\n      color: #16a34a;\n    }\n    .negative {\n      color: #dc2626;\n    }\n    .footer {\n      background: #f3f4f6;\n      padding: 16px;\n      text-align: center;\n      font-size: 13px;\n      color: #6b7280;\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <h1>${data.name} (${data.symbol}) Market Report</h1>\n      <p>${new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false })}</p>\n    </div>\n\n    <div class=\"section\">\n      <h2>📈 Price Overview</h2>\n      <div class=\"card\"><span class=\"label\">Current Price</span><span class=\"value\">${data.current_price}</span></div>\n      <div class=\"card\"><span class=\"label\">24h High</span><span class=\"value\">${data.high_24h}</span></div>\n      <div class=\"card\"><span class=\"label\">24h Low</span><span class=\"value\">${data.low_24h}</span></div>\n      <div class=\"card\">\n        <span class=\"label\">24h Change</span>\n        <span class=\"value ${parseFloat(data.price_change_percentage_24h) >= 0 ? 'positive' : 'negative'}\">\n          ${data.price_change_percentage_24h}\n        </span>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <h2>💧 Liquidity & Volume</h2>\n      <div class=\"card\"><span class=\"label\">Total Volume</span><span class=\"value\">${data.total_volume}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>🏆 All-Time Levels</h2>\n      <div class=\"card\"><span class=\"label\">ATH</span><span class=\"value\">${data.ath}</span></div>\n      <div class=\"card\"><span class=\"label\">ATL</span><span class=\"value\">${data.atl}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>📊 Supply Information</h2>\n      <div class=\"card\"><span class=\"label\">Circulating Supply</span><span class=\"value\">${data.circulating_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Total Supply</span><span class=\"value\">${data.total_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Max Supply</span><span class=\"value\">${data.max_supply}</span></div>\n    </div>\n\n    <div class=\"footer\">\n      Automated report generated via n8n • For informational purposes only\n    </div>\n\n  </div>\n</body>\n</html>\n`;\n\nreturn [\n  {\n    json: {\n      html_report: html\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        0
+      ],
+      "id": "54dbe5fe-b1e3-44fa-b09f-dac42602746f",
+      "name": "code "
+    },
+    {
+      "parameters": {
+        "sendTo": "mdtareqshahalal@gmail.com",
+        "subject": "Crypto Report",
+        "message": "={{ $json.html_report }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        -16
+      ],
+      "id": "7ce2eee4-ee21-49f6-a260-4d545467eb5b",
+      "name": "Send a message3",
+      "webhookId": "69931f88-9eb6-46f1-aceb-1a6bb5fad99a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gauD2GdKZdlqTsjG",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "mdtareqshahalam@gmail.com",
+        "subject": "Crypto Report",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1424,
+        176
+      ],
+      "id": "4e216722-e75d-4be0-a8bb-3cab03c53a4b",
+      "name": "Send a message4",
+      "webhookId": "382421d0-ad5d-465a-8684-8af7386823b1",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "nI7wHrmHC61FmGxv",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// This will loop through each incoming item\nreturn items.map(item => {\n  const newItem = { ...item };\n\n  // Check each key in the JSON\n  for (const key in newItem.json) {\n    if (typeof newItem.json[key] === \"string\") {\n      // Remove all asterisks\n      newItem.json[key] = newItem.json[key].replace(/\\*/g, '');\n    }\n  }\n\n  return newItem;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        176
+      ],
+      "id": "011d8664-cb8a-475a-a0bd-bdb575b4c7d4",
+      "name": "code5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json;\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Crypto Market Report</title>\n  <style>\n    body {\n      font-family: Arial, Helvetica, sans-serif;\n      background: #f4f7fb;\n      padding: 20px;\n      color: #1f2937;\n    }\n    .container {\n      max-width: 800px;\n      margin: auto;\n      background: #ffffff;\n      border-radius: 12px;\n      overflow: hidden;\n      box-shadow: 0 10px 25px rgba(0,0,0,0.08);\n    }\n    .header {\n      background: linear-gradient(135deg, #4f46e5, #06b6d4);\n      color: #ffffff;\n      padding: 24px;\n      text-align: center;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .section {\n      padding: 20px 24px;\n      border-bottom: 1px solid #e5e7eb;\n    }\n    .section:last-child {\n      border-bottom: none;\n    }\n    .section h2 {\n      margin-bottom: 12px;\n      color: #4f46e5;\n      font-size: 20px;\n    }\n    .card {\n      display: flex;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: #f9fafb;\n      border-radius: 8px;\n      margin-bottom: 10px;\n    }\n    .label {\n      font-weight: 600;\n      color: #374151;\n    }\n    .value {\n      font-weight: 700;\n      color: #111827;\n    }\n    .positive {\n      color: #16a34a;\n    }\n    .negative {\n      color: #dc2626;\n    }\n    .footer {\n      background: #f3f4f6;\n      padding: 16px;\n      text-align: center;\n      font-size: 13px;\n      color: #6b7280;\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <h1>${data.name} (${data.symbol}) Market Report</h1>\n      <p>${new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false })}</p>\n    </div>\n\n    <div class=\"section\">\n      <h2>📈 Price Overview</h2>\n      <div class=\"card\"><span class=\"label\">Current Price</span><span class=\"value\">${data.current_price}</span></div>\n      <div class=\"card\"><span class=\"label\">24h High</span><span class=\"value\">${data.high_24h}</span></div>\n      <div class=\"card\"><span class=\"label\">24h Low</span><span class=\"value\">${data.low_24h}</span></div>\n      <div class=\"card\">\n        <span class=\"label\">24h Change</span>\n        <span class=\"value ${parseFloat(data.price_change_percentage_24h) >= 0 ? 'positive' : 'negative'}\">\n          ${data.price_change_percentage_24h}\n        </span>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <h2>💧 Liquidity & Volume</h2>\n      <div class=\"card\"><span class=\"label\">Total Volume</span><span class=\"value\">${data.total_volume}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>🏆 All-Time Levels</h2>\n      <div class=\"card\"><span class=\"label\">ATH</span><span class=\"value\">${data.ath}</span></div>\n      <div class=\"card\"><span class=\"label\">ATL</span><span class=\"value\">${data.atl}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>📊 Supply Information</h2>\n      <div class=\"card\"><span class=\"label\">Circulating Supply</span><span class=\"value\">${data.circulating_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Total Supply</span><span class=\"value\">${data.total_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Max Supply</span><span class=\"value\">${data.max_supply}</span></div>\n    </div>\n\n    <div class=\"footer\">\n      Automated report generated via n8n • For informational purposes only\n    </div>\n\n  </div>\n</body>\n</html>\n`;\n\nreturn [\n  {\n    json: {\n      html_report: html\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1264,
+        432
+      ],
+      "id": "47539e22-36a5-472e-bc19-9349e9eb92ef",
+      "name": "code 6"
+    },
+    {
+      "parameters": {
+        "sendTo": "mdtareqshahalal@gmail.com",
+        "subject": "Crypto Report",
+        "message": "={{ $json.html_report }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1472,
+        432
+      ],
+      "id": "3f26ea96-9e3b-40ef-a7df-f2117a597017",
+      "name": "Send a message5",
+      "webhookId": "69931f88-9eb6-46f1-aceb-1a6bb5fad99a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gauD2GdKZdlqTsjG",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "mdtareqshahalam@gmail.com",
+        "subject": "Crypto Report",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        736,
+        272
+      ],
+      "id": "983f4899-00b7-4790-8f42-1266ff6c9169",
+      "name": "Send a message6",
+      "webhookId": "382421d0-ad5d-465a-8684-8af7386823b1",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "nI7wHrmHC61FmGxv",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// This will loop through each incoming item\nreturn items.map(item => {\n  const newItem = { ...item };\n\n  // Check each key in the JSON\n  for (const key in newItem.json) {\n    if (typeof newItem.json[key] === \"string\") {\n      // Remove all asterisks\n      newItem.json[key] = newItem.json[key].replace(/\\*/g, '');\n    }\n  }\n\n  return newItem;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        272
+      ],
+      "id": "22184f44-3d14-44c5-b589-dd98d783ffb6",
+      "name": "code6"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json;\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Crypto Market Report</title>\n  <style>\n    body {\n      font-family: Arial, Helvetica, sans-serif;\n      background: #f4f7fb;\n      padding: 20px;\n      color: #1f2937;\n    }\n    .container {\n      max-width: 800px;\n      margin: auto;\n      background: #ffffff;\n      border-radius: 12px;\n      overflow: hidden;\n      box-shadow: 0 10px 25px rgba(0,0,0,0.08);\n    }\n    .header {\n      background: linear-gradient(135deg, #4f46e5, #06b6d4);\n      color: #ffffff;\n      padding: 24px;\n      text-align: center;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .section {\n      padding: 20px 24px;\n      border-bottom: 1px solid #e5e7eb;\n    }\n    .section:last-child {\n      border-bottom: none;\n    }\n    .section h2 {\n      margin-bottom: 12px;\n      color: #4f46e5;\n      font-size: 20px;\n    }\n    .card {\n      display: flex;\n      justify-content: space-between;\n      padding: 12px 16px;\n      background: #f9fafb;\n      border-radius: 8px;\n      margin-bottom: 10px;\n    }\n    .label {\n      font-weight: 600;\n      color: #374151;\n    }\n    .value {\n      font-weight: 700;\n      color: #111827;\n    }\n    .positive {\n      color: #16a34a;\n    }\n    .negative {\n      color: #dc2626;\n    }\n    .footer {\n      background: #f3f4f6;\n      padding: 16px;\n      text-align: center;\n      font-size: 13px;\n      color: #6b7280;\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"container\">\n\n    <div class=\"header\">\n      <h1>${data.name} (${data.symbol}) Market Report</h1>\n      <p>${new Date().toLocaleString(\"tr-TR\", { timeZone: \"Europe/Istanbul\", hour12: false })}</p>\n    </div>\n\n    <div class=\"section\">\n      <h2>📈 Price Overview</h2>\n      <div class=\"card\"><span class=\"label\">Current Price</span><span class=\"value\">${data.current_price}</span></div>\n      <div class=\"card\"><span class=\"label\">24h High</span><span class=\"value\">${data.high_24h}</span></div>\n      <div class=\"card\"><span class=\"label\">24h Low</span><span class=\"value\">${data.low_24h}</span></div>\n      <div class=\"card\">\n        <span class=\"label\">24h Change</span>\n        <span class=\"value ${parseFloat(data.price_change_percentage_24h) >= 0 ? 'positive' : 'negative'}\">\n          ${data.price_change_percentage_24h}\n        </span>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <h2>💧 Liquidity & Volume</h2>\n      <div class=\"card\"><span class=\"label\">Total Volume</span><span class=\"value\">${data.total_volume}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>🏆 All-Time Levels</h2>\n      <div class=\"card\"><span class=\"label\">ATH</span><span class=\"value\">${data.ath}</span></div>\n      <div class=\"card\"><span class=\"label\">ATL</span><span class=\"value\">${data.atl}</span></div>\n    </div>\n\n    <div class=\"section\">\n      <h2>📊 Supply Information</h2>\n      <div class=\"card\"><span class=\"label\">Circulating Supply</span><span class=\"value\">${data.circulating_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Total Supply</span><span class=\"value\">${data.total_supply}</span></div>\n      <div class=\"card\"><span class=\"label\">Max Supply</span><span class=\"value\">${data.max_supply}</span></div>\n    </div>\n\n    <div class=\"footer\">\n      Automated report generated via n8n • For informational purposes only\n    </div>\n\n  </div>\n</body>\n</html>\n`;\n\nreturn [\n  {\n    json: {\n      html_report: html\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        528
+      ],
+      "id": "90da7825-8d9a-47b6-ba0e-e80522a93657",
+      "name": "code 7"
+    },
+    {
+      "parameters": {
+        "sendTo": "mdtareqshahalal@gmail.com",
+        "subject": "Crypto Report",
+        "message": "={{ $json.html_report }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        784,
+        528
+      ],
+      "id": "f9e368e6-7fdf-4d74-b422-56971fd90207",
+      "name": "Send a message7",
+      "webhookId": "69931f88-9eb6-46f1-aceb-1a6bb5fad99a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gauD2GdKZdlqTsjG",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Extract Crypto Data 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Crypto Data 2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Crypto Data 3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract Crypto Data 4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Crypto Data 1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Crypto Data 2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Crypto Data 3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Crypto Data 4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code4": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "code 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code 5": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "code ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code ": {
+      "main": [
+        [
+          {
+            "node": "Send a message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code5": {
+      "main": [
+        [
+          {
+            "node": "Send a message4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "code 6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code 6": {
+      "main": [
+        [
+          {
+            "node": "Send a message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain2": {
+      "main": [
+        [
+          {
+            "node": "code5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code6": {
+      "main": [
+        [
+          {
+            "node": "Send a message6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "code 7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code 7": {
+      "main": [
+        [
+          {
+            "node": "Send a message7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain3": {
+      "main": [
+        [
+          {
+            "node": "code6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3f69678f-682d-4de0-b636-7a430b140d7e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b0fec64869781374751dbffd08f08e3fb7c974aa28d5dd35762c694e785b6321"
+  },
+  "id": "hLDviUzXgHmJcEOY",
+  "tags": []
+}
