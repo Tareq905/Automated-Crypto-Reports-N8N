@@ -1,41 +1,197 @@
-AUTOMATED CRYPTO REPORTING SYSTEM
-SYSTEM ARCHITECTURE DOCUMENT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Automated Crypto Reporting System</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f7fb;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    header {
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      color: #4f46e5;
+      font-size: 32px;
+    }
+    header p {
+      margin-top: 8px;
+      color: #6b7280;
+      font-size: 16px;
+    }
+    section {
+      margin-bottom: 32px;
+    }
+    section h2 {
+      color: #4f46e5;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .architecture-step {
+      background: #f9fafb;
+      border-left: 4px solid #4f46e5;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+    }
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #6b7280;
+      text-align: center;
+    }
+    code {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  </style>
+</head>
 
-PROJECT OVERVIEW
-This project is an automated crypto market reporting system developed using n8n. The system fetches live cryptocurrency market data, processes and formats the data, generates AI-based market analysis, builds professional HTML reports, and distributes them automatically via email. The architecture is modular, scalable, and designed with read-only data access to ensure safety and reliability.
+<body>
+  <div class="container">
 
-TRIGGER LAYER
-The workflow starts with a Manual Trigger node. This trigger is used to start the automation manually for testing and development purposes. In production, this trigger can be replaced with a Schedule Trigger to run the workflow automatically at defined intervals.
+    <header>
+      <h1>Automated Crypto Reporting System</h1>
+      <p>An end-to-end automation workflow built with n8n for crypto market analysis and reporting</p>
+    </header>
 
-DATA EXTRACTION LAYER
-The system fetches market data from the CoinGecko public API. This API does not require an API key for the used endpoints. The workflow retrieves real-time cryptocurrency market data such as current price, 24-hour high and low, volume, all-time high, all-time low, and supply-related metrics. The architecture allows easy expansion to support multiple cryptocurrencies.
+    <section>
+      <h2>Overview</h2>
+      <p>
+        This project demonstrates an <strong>end-to-end crypto market automation system</strong> built using <strong>n8n</strong>.
+        It fetches live cryptocurrency market data, processes and formats the data, generates AI-based market analysis,
+        creates professional HTML reports, and distributes them automatically via email.
+      </p>
+      <p>
+        The system is designed with <strong>read-only data access</strong>, ensuring safety, reliability, and easy extensibility.
+      </p>
+    </section>
 
-DATA PROCESSING LAYER
-JavaScript Code nodes are used to process the raw API responses. This layer extracts the required fields, handles missing or undefined values, formats numeric values, and standardizes the output structure. The processed data becomes clean, consistent, and ready for analysis and reporting.
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li>Fetches live cryptocurrency market data (price, volume, ATH, ATL, supply metrics)</li>
+        <li>Cleans and normalizes raw API data using JavaScript</li>
+        <li>Generates AI-based market analysis</li>
+        <li>Creates professional, email-ready HTML reports</li>
+        <li>Automatically sends reports via Gmail or Outlook</li>
+        <li>Modular and scalable workflow design</li>
+      </ul>
+    </section>
 
-PROMPT PREPARATION LAYER
-A dedicated node prepares structured textual input using the processed data. This text is formatted as a prompt for AI-based analysis. It includes market values, timestamps, and contextual instructions to generate concise and professional insights.
+    <section>
+      <h2>Architecture</h2>
 
-AI ANALYSIS LAYER
-An AI language model is used to generate short market analysis text. The AI analyzes price behavior, volatility, liquidity, risk, and overall market sentiment. This layer focuses only on textual interpretation and does not modify or calculate numerical data.
+      <div class="architecture-step">
+        <strong>Trigger Layer:</strong>  
+        Manual Trigger for development and testing. Can be replaced with a Schedule Trigger for automated execution.
+      </div>
 
-POST-PROCESSING LAYER
-Additional JavaScript processing ensures that the AI-generated text is clean and free from unwanted characters or formatting issues. This step guarantees compatibility with email and HTML rendering.
+      <div class="architecture-step">
+        <strong>Data Extraction Layer:</strong>  
+        Fetches real-time market data from the CoinGecko Public API (no API key required).
+      </div>
 
-REPORT GENERATION LAYER
-The system generates a professional HTML report using JavaScript. The report includes structured sections such as price overview, liquidity and volume, all-time levels, and supply information. The output is designed to be email-ready and visually clear.
+      <div class="architecture-step">
+        <strong>Data Processing Layer:</strong>  
+        JavaScript Code nodes clean, format, and normalize API responses.
+      </div>
 
-DISTRIBUTION LAYER
-The final HTML report is sent automatically using email services such as Gmail or Outlook. This layer ensures that the generated report reaches the intended recipients without manual intervention.
+      <div class="architecture-step">
+        <strong>Prompt Preparation Layer:</strong>  
+        Prepares structured textual input for AI-based analysis.
+      </div>
 
-DATA FLOW SUMMARY
-Trigger initiates workflow. Market data is fetched from CoinGecko. Data is cleaned and formatted. A prompt is generated for AI analysis. AI produces market insights. Output text is cleaned. An HTML report is generated. The report is delivered via email.
+      <div class="architecture-step">
+        <strong>AI Analysis Layer:</strong>  
+        Generates concise market insights covering price behavior, volatility, liquidity, and sentiment.
+      </div>
 
-DESIGN PRINCIPLES
-The system follows read-only data access, separation of concerns, modular workflow design, and easy extensibility. It is suitable for production automation as well as portfolio and CV demonstration.
+      <div class="architecture-step">
+        <strong>Post-Processing Layer:</strong>  
+        Cleans AI-generated output to ensure compatibility with HTML and email rendering.
+      </div>
 
-POSSIBLE EXTENSIONS
-The workflow can be extended with scheduled execution, support for multiple cryptocurrencies, data storage in databases or spreadsheets, Slack or Telegram notifications, and dashboard integration.
+      <div class="architecture-step">
+        <strong>Report Generation Layer:</strong>  
+        Builds a professional HTML report with structured sections.
+      </div>
 
-PROJECT DESCRIPTION FOR PORTFOLIO
-Automated Crypto Market Reporting and Analysis System built with n8n, R
+      <div class="architecture-step">
+        <strong>Distribution Layer:</strong>  
+        Automatically delivers reports via email using Gmail or Outlook.
+      </div>
+    </section>
+
+    <section>
+      <h2>Data Flow</h2>
+      <p>
+        Trigger → CoinGecko API → Data Processing → Prompt Preparation → AI Analysis →
+        Post-Processing → HTML Report Generation → Email Delivery
+      </p>
+    </section>
+
+    <section>
+      <h2>Design Principles</h2>
+      <ul>
+        <li>Read-only data access</li>
+        <li>Separation of concerns</li>
+        <li>Modular workflow structure</li>
+        <li>Easy extensibility</li>
+        <li>Production- and portfolio-ready design</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Possible Extensions</h2>
+      <ul>
+        <li>Scheduled execution</li>
+        <li>Support for multiple cryptocurrencies</li>
+        <li>Data storage in Google Sheets or databases</li>
+        <li>Slack or Telegram notifications</li>
+        <li>Dashboard integration (Looker Studio)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Portfolio Description</h2>
+      <p>
+        <strong>Automated Crypto Market Reporting and Analysis System</strong> built with
+        <code>n8n</code>, <code>REST APIs</code>, <code>JavaScript</code>, and
+        <code>AI-based text generation</code>.
+      </p>
+    </section>
+
+    <footer>
+      © 2025 • Automated Crypto Reporting System • Built for learning, automation, and portfolio demonstration
+    </footer>
+
+  </div>
+</body>
+</html>
