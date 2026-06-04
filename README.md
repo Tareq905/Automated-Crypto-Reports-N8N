@@ -6,7 +6,6 @@ This project is an **Automated Crypto Market Reporting and Analysis System** bui
 The system automatically fetches live cryptocurrency market data, processes and standardizes it, generates concise AI-driven market insights, builds professional HTML reports, and distributes them via email.
 
 The architecture is **modular, scalable, and production-ready**, following **read-only data access** principles to ensure safety, reliability, and compliance.  
-It is suitable for real-world automation, portfolio demonstration, and enterprise-style workflow design.
 
 ---
 
